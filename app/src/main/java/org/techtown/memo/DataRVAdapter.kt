@@ -1,42 +1,27 @@
 package org.techtown.memo
-
-
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
+import org.techtown.memo.databinding.ListviewItemBinding
 
-class DataRVAdapter(private val items:ArrayList<Data>): RecyclerView.Adapter<DataRVAdapter.ViewHolder>() {
-    override fun getItemCount(): Int = items.size
-    override fun onBindViewHolder(holder: DataRVAdapter.ViewHolder, position: Int) {
-        val item = items[position]
-        val listener = View.OnClickListener {
-            Toast.makeText(
-                it.context,
-                "Clicked -> title : ${item.title}, memo : ${item.memo}",
-                Toast.LENGTH_SHORT
-            ).show()
-        }
-        holder.apply {
-            bind(listener, item)
-            itemView.tag=item
+class DataRVAdapter(private val datalist:ArrayList<Data>): RecyclerView.Adapter<DataRVAdapter.DataViewHolder>() {
+    inner class DataViewHolder(private val viewBinding: ListviewItemBinding):RecyclerView.ViewHolder(viewBinding.root){
+        fun bind(data: Data){
+            viewBinding.tvTitle.text = data.title
+            viewBinding.tvMemo.text = data.memo
         }
     }
 
-    override fun onCreateViewHolder(parent:ViewGroup, viewType:Int): ViewHolder {
-        val inflatedView = LayoutInflater.from(parent.context).inflate(R.layout.listview_item, parent,false)
-        return DataRVAdapter.ViewHolder(inflatedView)
-    }
-    class ViewHolder(v: View):RecyclerView.ViewHolder(v){
-        private var view:View=v
-        fun bind(listener: View.OnClickListener, item:Data){
-
-            view.setOnClickListener(listener)
-        }
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DataViewHolder {
+        val viewBinding = ListviewItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return DataViewHolder(viewBinding)
     }
 
+    override fun onBindViewHolder(holder: DataViewHolder, position: Int) {
+        holder.bind(datalist[position])
+    }
 
-
-
+    override fun getItemCount(): Int {
+        TODO("Not yet implemented")
+    }
 }
