@@ -1,11 +1,17 @@
 package org.techtown.memo
+import android.util.SparseBooleanArray
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import org.techtown.memo.databinding.ListviewItemBinding
 
 class DataRVAdapter(private val datalist:ArrayList<Data>): RecyclerView.Adapter<DataRVAdapter.DataViewHolder>() {
+    private val switchstatus = SparseBooleanArray()
+    override fun getItemViewType(position: Int): Int{
+        return position
+    }
     inner class DataViewHolder(private val viewBinding: ListviewItemBinding):RecyclerView.ViewHolder(viewBinding.root){
+
         fun bind(data: Data){
             viewBinding.tvTitle.text = data.title
             viewBinding.tvMemo.text = data.memo

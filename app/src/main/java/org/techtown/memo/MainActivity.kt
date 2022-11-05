@@ -16,5 +16,9 @@ class MainActivity : AppCompatActivity() {
             var intent = Intent(this, SelectActivity::class.java)
             startActivity(intent)
         }
+        viewBinding.button2.setOnClickListener {
+            var intent = Intent(this, WriteActivity::class.java)
+            startActivity(intent)
+        }
     }
 }
