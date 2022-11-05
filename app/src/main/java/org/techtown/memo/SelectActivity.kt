@@ -22,5 +22,5 @@ class SelectActivity : AppCompatActivity() {
         binding.lstMemo.adapter = adapter
         binding.lstMemo.layoutManager = LinearLayoutManager(this)
     }
-
+//https://ms3864.tistory.com/3
 }
