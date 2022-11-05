@@ -1,26 +1,19 @@
 package org.techtown.memo
 
-import android.app.Activity
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.recyclerview.widget.LinearLayoutManager
 import org.techtown.memo.databinding.ActivitySelectBinding
 
-class SelectActivity : AppCompatActivity() {
-    private lateinit var binding: ActivitySelectBinding
+class ShowActivity :AppCompatActivity(){
+    lateinit var binding : ActivitySelectBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivitySelectBinding.inflate(layoutInflater)
-
         val list : ArrayList<Data> = arrayListOf()
         list.apply {
-
+            add(Data(intent.getStringExtra(("Data2")).toString(),intent.getStringExtra("Data").toString()))
         }
-        val adapter = DataRVAdapter(list)
         setContentView(binding.root)
 
-        binding.lstMemo.adapter = adapter
-        binding.lstMemo.layoutManager = LinearLayoutManager(this)
     }
-
 }

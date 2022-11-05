@@ -6,7 +6,6 @@ import androidx.recyclerview.widget.RecyclerView
 import org.techtown.memo.databinding.ListviewItemBinding
 
 class DataRVAdapter(private val datalist:ArrayList<Data>): RecyclerView.Adapter<DataRVAdapter.DataViewHolder>() {
-    private val switchstatus = SparseBooleanArray()
     override fun getItemViewType(position: Int): Int{
         return position
     }
@@ -27,7 +26,5 @@ class DataRVAdapter(private val datalist:ArrayList<Data>): RecyclerView.Adapter<
         holder.bind(datalist[position])
     }
 
-    override fun getItemCount(): Int {
-        TODO("Not yet implemented")
-    }
+    override fun getItemCount(): Int = datalist.size
 }
