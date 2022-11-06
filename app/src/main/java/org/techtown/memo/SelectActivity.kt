@@ -1,6 +1,5 @@
 package org.techtown.memo
 
-import android.app.Activity
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -14,13 +13,22 @@ class SelectActivity : AppCompatActivity() {
 
         val list : ArrayList<Data> = arrayListOf()
         list.apply {
-
+            add(Data("hello","1"))
+            add(Data("hello","2"))
+            add(Data("hello","3"))
+            add(Data("hello","4"))
         }
         val adapter = DataRVAdapter(list)
-        setContentView(binding.root)
-
+        var title = intent.getStringExtra("Data2")
+        var memo = intent.getStringExtra("Data")
+        list.apply{
+            add(Data(title.toString(), memo.toString()))
+        }
+        adapter.notifyItemInserted(list.size)
         binding.lstMemo.adapter = adapter
         binding.lstMemo.layoutManager = LinearLayoutManager(this)
+        setContentView(binding.root)
+
     }
-//https://ms3864.tistory.com/3
+
 }

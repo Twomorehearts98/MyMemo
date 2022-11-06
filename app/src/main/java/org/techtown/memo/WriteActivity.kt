@@ -17,6 +17,15 @@ class WriteActivity : AppCompatActivity(){
         binding = ActivityWriteBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
+        save = binding.editMain.text
+        save2 = binding.editTitle.text
+        binding.btnSelect.setOnClickListener{
+            val intent = Intent(this, ShowActivity::class.java)
+            intent.putExtra("Data", save.toString())
+            intent.putExtra("Data2", save2.toString())
+
+            startActivity(intent)
+        }
     }
     override fun onStart() {
         super.onStart()
@@ -27,15 +36,7 @@ class WriteActivity : AppCompatActivity(){
     override fun onResume() {
         super.onResume()
         Toast.makeText(this, "onResume", Toast.LENGTH_SHORT).show()
-        save = binding.editMain.text
-        save2 = binding.editTitle.text
-        binding.btnSelect.setOnClickListener{
-            val intent = Intent(this, SelectActivity::class.java)
-            intent.putExtra("Data", save.toString())
-            intent.putExtra("Data2", save2.toString())
 
-            startActivity(intent)
-        }
 
     }
     override fun onPause() {
